@@ -10,9 +10,8 @@ export function Home() {
   const [evens, setEvens] = useState([]);
   const [listEven, setListEven] = useState(false);
   const [listOdd, setListOdd] = useState(false);
-  const [counter, setCounter] = useState(0);
 
-  useEffect(() => {
+  function handleButton (){
     fetch("http://numbersapi.com/random/math")
       .then((response) => {
         return response.text();
@@ -28,11 +27,7 @@ export function Home() {
           return odds.push(data);
         }
       });
-  }, [counter]);
-
-  function handleButtonClick() {
-    setCounter((c) => c + 1);
-  }
+  };
 
   function handleListeEven() {
     setListEven(!listEven);
@@ -43,7 +38,8 @@ export function Home() {
 
   return (
     <div>
-      <button onClick={handleButtonClick}>Press me!</button>
+      <button onClick={handleButton}>Press me!</button>
+      <h2>{sentence}</h2>
       {/* <ul>
         {list.map((item, index) => (
           <li key={index}>{item}</li>
